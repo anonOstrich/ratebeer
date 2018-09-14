@@ -9,4 +9,8 @@ class Beer < ApplicationRecord
        sum =  self.ratings.inject(0) {|sigma, rating| sigma + rating.score}
        (1.0* sum) / self.ratings.count
     end 
+
+    def to_s
+        "#{name} (#{brewery.name})"
+    end
 end
