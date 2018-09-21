@@ -1,10 +1,10 @@
 class Beer < ApplicationRecord
-    include RatingAverage
+  include RatingAverage
 
-    belongs_to :brewery
-    has_many :ratings, dependent: :destroy
+  belongs_to :brewery
+  has_many :ratings, dependent: :destroy
 
-    def to_s
-        "#{name} (#{brewery.name})"
-    end
+  def to_s
+    "#{name} (#{brewery.name})"
+  end
 end

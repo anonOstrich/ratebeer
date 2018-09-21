@@ -10,6 +10,9 @@
   </head>
 
   <body>
+  <% if session[:user_id] %>
+  <p><%= User.find(session[:user_id]).username %> signed in</p>
+  <% end %>
     <div class="navibar">
       <%= link_to 'breweries', breweries_path %>
       <%= link_to 'beers', beers_path %>
