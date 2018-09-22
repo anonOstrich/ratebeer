@@ -10,13 +10,22 @@
   </head>
 
   <body>
-  <% if session[:user_id] %>
-  <p><%= User.find(session[:user_id]).username %> signed in</p>
-  <% end %>
+
+
     <div class="navibar">
       <%= link_to 'breweries', breweries_path %>
       <%= link_to 'beers', beers_path %>
       <%= link_to 'ratings', ratings_path %>
+      <%= link_to 'users', users_path %>
+        <span> | </span>
+      <% if current_user %>
+        <%= link_to "#{current_user.username}", user_path(current_user.id) %>
+        <%= link_to 'rate a beer', new_rating_path %>
+        <%= link_to 'signout', signout_path, method: :delete %> 
+      <% else %>
+        <%= link_to 'sign in', signin_path %>
+        <%= link_to 'sign up', signup_path %> 
+      <% end %>
     </div>
     <%= yield %>
   </body>
