@@ -15,12 +15,11 @@ class RatingsController < ApplicationController
     if @rating.save
       session[:last_rating] = "#{@rating.beer.name} #{@rating.score} points"
       redirect_to user_path current_user
-    else 
+    else
       @beers = Beer.all
-      render :new   
+      render :new
     end
   end
-
 
   def destroy
     rating = Rating.find(params[:id])

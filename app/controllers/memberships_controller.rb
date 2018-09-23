@@ -14,7 +14,7 @@ class MembershipsController < ApplicationController
 
   # GET /memberships/new
   def new
-    @beer_clubs = BeerClub.all.select{|bc| not  bc.users.include? current_user}
+    @beer_clubs = BeerClub.all.select{ |bc| bc.users.include? current_user }
     @membership = Membership.new
   end
 
@@ -26,8 +26,8 @@ class MembershipsController < ApplicationController
   # POST /memberships.json
   def create
     @membership = Membership.new(membership_params)
-    existing_memberships = Membership.all.select{|m| m.beer_club_id == params[:membership][:beer_club_id].to_i && m.user_id == current_user.id}
-    if existing_memberships.empty? 
+    existing_memberships = Membership.all.select{ |m| m.beer_club_id == params[:membership][:beer_club_id].to_i && m.user_id == current_user.id }
+    if existing_memberships.empty?
       @membership.user_id = current_user.id if current_user
     end
 
@@ -36,7 +36,7 @@ class MembershipsController < ApplicationController
         format.html { redirect_to @membership, notice: 'Membership was successfully created.' }
         format.json { render :show, status: :created, location: @membership }
       else
-        @beer_clubs = BeerClub.all.select{|bc| not  bc.users.include? current_user}
+        @beer_clubs = BeerClub.all.select{ |bc| bc.users.include? current_user }
 
         format.html { render :new }
         format.json { render json: @membership.errors, status: :unprocessable_entity }
@@ -69,13 +69,14 @@ class MembershipsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_membership
-      @membership = Membership.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def membership_params
-      params.require(:membership).permit(:beer_club_id, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_membership
+    @membership = Membership.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def membership_params
+    params.require(:membership).permit(:beer_club_id, :user_id)
+  end
 end
