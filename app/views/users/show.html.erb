@@ -16,5 +16,13 @@ No ratings yet
 <% end %>
 </p>
 
+<h2>Proud member of the following beer clubs:</h2>
+<ul>
+  <% @user.beer_clubs.each do |club| %>
+  <li><%= club.name %></li>
+  <% end %>
+
+</ul>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

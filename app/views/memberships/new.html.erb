@@ -1,0 +1,10 @@
+<h1>Join a beer club</h1>
+
+<%= form_for(@membership) do |f| %>
+
+    beer club: <%= f.select :beer_club_id, options_from_collection_for_select(@beer_clubs, :id, :to_s) %>
+
+    <%= f.submit 'Join club'%> 
+<% end %>
+
+<%= link_to 'Back', memberships_path %>
