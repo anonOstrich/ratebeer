@@ -8,7 +8,11 @@ Has made <%=  pluralize(@user.ratings.count, 'rating') %> , average  rating <%= 
 <h2>Ratings</h2>
 <ul>
   <% @user.ratings.each do |rating| %>
-    <li><%= rating.beer.name %> <%= rating.score %> <%= link_to 'delete', rating_path(rating.id), method: :delete %> </li>
+    <li><%= rating.beer.name %> <%= rating.score %>
+    <% if @user == current_user %>
+     <%= link_to 'delete', rating_path(rating.id), method: :delete %>
+    <% end %>
+      </li>
     <% end %>
 </ul>
 <% else %>
@@ -24,5 +28,8 @@ No ratings yet
 
 </ul>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<% if @user == current_user %>
+  <%= link_to 'Edit', edit_user_path(@user) %> | 
+  <%= link_to 'Destroy account', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
 <%= link_to 'Back', users_path %>
