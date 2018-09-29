@@ -26,6 +26,35 @@ RSpec.describe User, type: :model do
   end
 
 
+  describe "favorite brewery" do 
+    let(:user){ FactoryBot.create(:user) }
+
+    it "has method for determining the favorite brewery" do 
+      expect(user).to respond_to(:favorite_brewery)
+    end
+    
+    it "is nil without ratings" do 
+      expect(user.favorite_brewery).to eq(nil)
+    end   
+
+    it "is the only brewery if only one review" do 
+      brewery = FactoryBot.create(:brewery, name: "Testi")
+      create_beer_with_rating({user: user, brewery: brewery }, 20)
+      expect(user.favorite_brewery).to eq(brewery)
+    end 
+
+    it "is the highest rated brewery if there are many beers that each have one review" do 
+      best = FactoryBot.create(:brewery, name:"Best Brewery")
+      ok = FactoryBot.create(:brewery, name: "OK Brewery")
+      subpar = FactoryBot.create(:brewery, name:"Sub Bar Brewery")
+      create_beers_with_breweries_and_many_ratings({user: user}, [ok, 20], [best, 36], [subpar, 10])
+      expect(user.favorite_brewery).to eq(best)
+    end 
+
+
+  end 
+
+
   describe "favorite style" do
     let(:user) { FactoryBot.create(:user) }
 
@@ -53,9 +82,6 @@ RSpec.describe User, type: :model do
     end
 
   end 
-
-  describe "favorite brewery" do 
-  end
 
 
   describe "favorite beer" do 
@@ -115,9 +141,12 @@ RSpec.describe User, type: :model do
 
 end
 
+
 def create_beer_with_rating(object, score)
   beer = FactoryBot.create(:beer)
   beer.style = object[:style] if object[:style]
+  beer.brewery = object[:brewery] if object[:brewery]
+  beer.save 
   FactoryBot.create(:rating, beer: beer, score: score, user: object[:user])
   beer
 end 
@@ -128,9 +157,16 @@ def create_beers_with_many_ratings(object, *scores)
   end
 end
 
+def create_beers_with_breweries_and_many_ratings(object, *brewery_scores)
+  brewery_scores.each do |bs|
+    object[:brewery] = bs[0]
+    create_beer_with_rating(object, bs[1])
+  end 
+end 
+
 def create_beers_with_styles_and_many_ratings(object, *style_scores)
   style_scores.each do |ss|
-    object[style: ss[0]]
+    object[:style] = ss[0]
     create_beer_with_rating(object, ss[1])
   end
 
