@@ -1,5 +1,6 @@
 Ratebeer
 ========
+[![Build Status](https://travis-ci.org/anonOstrich/ratebeer.svg?branch=master)](https://travis-ci.org/anonOstrich/ratebeer)
 
 Kuvaus
 ------
