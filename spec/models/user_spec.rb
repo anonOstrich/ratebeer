@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+include Helpers
+
 RSpec.describe User, type: :model do
   it "has the username set correctly" do
     user = User.new username:"Pekka"
@@ -138,36 +140,5 @@ RSpec.describe User, type: :model do
 
 
 
-
-end
-
-
-def create_beer_with_rating(object, score)
-  beer = FactoryBot.create(:beer)
-  beer.style = object[:style] if object[:style]
-  beer.brewery = object[:brewery] if object[:brewery]
-  beer.save 
-  FactoryBot.create(:rating, beer: beer, score: score, user: object[:user])
-  beer
-end 
-
-def create_beers_with_many_ratings(object, *scores)
-  scores.each do |score|
-    create_beer_with_rating(object, score)
-  end
-end
-
-def create_beers_with_breweries_and_many_ratings(object, *brewery_scores)
-  brewery_scores.each do |bs|
-    object[:brewery] = bs[0]
-    create_beer_with_rating(object, bs[1])
-  end 
-end 
-
-def create_beers_with_styles_and_many_ratings(object, *style_scores)
-  style_scores.each do |ss|
-    object[:style] = ss[0]
-    create_beer_with_rating(object, ss[1])
-  end
 
 end
