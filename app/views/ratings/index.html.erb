@@ -5,6 +5,8 @@
     <% end %>
 </ul>
 
+<h3>Total number of reviews: <%= "#{@ratings.count}" %> </h3>
+
 <% if not current_user.nil? %>
 <%= link_to 'Add a new rating', new_rating_path %>
 <% end %>

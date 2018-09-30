@@ -27,4 +27,43 @@ describe "Rating" do
     expect(beer1.ratings.count).to eq(1)
     expect(beer1.average_rating).to eq(15.0)
   end
+
+  it "are displayed on the ratings page correctly with total number of ratings" do
+    scores = [10, 30, 47, 17, 18, 22]
+    create_beers_with_many_ratings({user: user}, *scores)
+    visit ratings_path
+
+    scores.each do |s|
+      expect(page).to have_content(s)
+    end
+
+    expect(page).to have_content('Total number of reviews: 6')
+  end
+
+  it 'are displayed on users page correctly' do 
+    user2 = FactoryBot.create :user, username: "Jarkko", password: "Kissa2", password_confirmation: "Kissa2"
+    scores = [10, 30, 20, 40, 50]
+    scores2 = [5, 15, 25, 35, 45]
+    create_beers_with_many_ratings({user: user}, *scores)
+    create_beers_with_many_ratings({user: user2}, *scores2)
+    visit user_path(user)
+    scores.each do |score|
+      expect(page).to have_content("anonymous #{score} ")
+    end
+    expect(page).to have_content('Has made 5 ratings, average rating 30.0')
+
+    scores2.each do |score|
+      expect(page).not_to have_content("anonymous #{score} ")
+    end
+  end
+
+  it 'is removed from database when user deletes' do 
+    create_beers_with_many_ratings({user: user}, 10, 20, 30)
+    visit user_path(user)
+    expect{
+      find_link('delete',  {href: '/ratings/2'}).click
+    }.to change{Rating.count}.from(3).to(2)
+
+    expect(Rating.find_by score: 20).to eq(nil)
+  end
 end

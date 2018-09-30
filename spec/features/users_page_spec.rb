@@ -5,7 +5,7 @@ include Helpers
 describe "User" do 
 
     before :each do 
-        FactoryBot.create :user
+       FactoryBot.create :user
     end
 
     it "when signed up with good credentials, is added to the system" do 
@@ -36,7 +36,16 @@ describe "User" do
             expect(page).to have_content 'Username and/or password mismatch'
         end 
 
+    end
 
-
+    it "has favorites displayed on their page" do 
+        user = User.first
+        brewery1 = FactoryBot.create(:brewery, name: "Jaska's Brewery")
+        brewery2 = FactoryBot.create(:brewery, name: 'Basic Brewery')
+        create_beer_with_rating({user: user, style: 'IPA', brewery: brewery1} , 35)
+        create_beer_with_rating({user: user, style: 'Pale Ale', brewery: brewery2}, 39)
+        visit user_path(user)
+        expect(page).to have_content 'Favorite brewery: Basic Brewery'
+        expect(page).to have_content 'Favorite beer style: Pale Ale'
     end
 end
