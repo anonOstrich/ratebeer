@@ -1,8 +1,13 @@
 language: ruby
-
 rvm:
 - 2.5.1
-
 script:
-- bundle exec rails db:migrate 
+- bundle exec rails db:migrate
 - bundle exec rspec -fd spec
+deploy:
+  provider: heroku
+  api_key:
+    secure: ng6oiGD/07cSppU2kRfGKcd5PQUEp+iuqkJEoah5eITnoHnlsEzCThRH1CpzZjsLRuvo8QvkkfYFJIxTjAef7+pegYlN0MU+ip8n36TJDvXfDly6Gt8fTdJ0vd/c8k6G0MuBc8DHL0jIaIzidIzPX1AF++03u6ulZUlZkGRMNGbY2EKRqd9pfgPaCgYfg0FOleldEjGTafqUYmLupDhU/2yneP4mwX06Ed/gC0U2JkbKVlecnUIje/JrUB5UbmX7D+Mbns9BBFjBivNE6Mk8K/byXHLkfsKdsa/1LNaLZBWGCmR+KSuEYBrVDgzrVe+4YlCErS/8flbXkMRCp+Ctror3jDlIh6mamUKzcGJPcS42d5GclHibfulkJITQCVCgghbMtYMdn9zs5g55+HfrFaMg9jiKWcWK42rXEhN9i9Sg2KNhmJmCubzTEYspjzqfaBNN0GzSbCLSFFC+5Hmn+9F9DZwpwc/5voSGMDbAu7oOWeellRj+dFTF2AGV444XcYXz36cEZoyMyU5u+/K5zDhu2EuHRXuw7lYou35tEWeLdQ9Xr99w5y2hwapocn5D6VC986yC5kgjtd69JBo9vQkt+BPwPGtjJU9FMXcV9tm58SI6dbEz2xLg6jxJP8tpIrCnrBQ9CXRQpNGddiHmAI1QWDfiLp2mGyGqTRyjG40=
+  app: pure-bayou-12488
+  on:
+    repo: anonOstrich/ratebeer
