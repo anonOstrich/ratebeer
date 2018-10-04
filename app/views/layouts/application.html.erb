@@ -18,6 +18,7 @@
       <%= link_to 'ratings', ratings_path %>
       <%= link_to 'users', users_path %>
       <%= link_to 'beer clubs', beer_clubs_path %>
+      <%= link_to 'search for breweries in city', places_path %>
         <span> | </span>
       <% if current_user %>
         <%= link_to "#{current_user.username}", user_path(current_user.id) %>
