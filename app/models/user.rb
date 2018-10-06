@@ -30,4 +30,8 @@ class User < ApplicationRecord
 
     ratings.order(score: :desc).limit(1).first.beer.brewery
   end
+
+  def is_member_of_club(bc)
+    beer_clubs.find_by id: bc.id
+  end
 end
