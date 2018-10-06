@@ -64,7 +64,7 @@ end
             stub_request(:get, /.*turku/).to_return(body: canned_answer, headers: { 'Content-Type' => "text/xml" })         
             BeermappingApi.places_in("turku")
             places = BeermappingApi.places_in("turku")
-
+            place = places.first
             expect(places.size).to eq(1)
             expect(place.name).to eq("Panimoravintola Koulu")
             expect(place.street).to eq("Eerikinkatu 18")
