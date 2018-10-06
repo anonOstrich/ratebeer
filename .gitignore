@@ -27,5 +27,8 @@
 /public/assets
 .byebug_history
 
+# Ignore personal api key to beer api
+/config/application.yml
+
 # Ignore master key for decrypting credentials and more.
 /config/master.key
