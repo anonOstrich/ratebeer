@@ -1,8 +1,7 @@
 class BeermappingApi
 
     def self.places_in(city)
-        city = city.downcase
-        
+        city = city.downcase     
         Rails.cache.fetch(city, expires_in: 1.week)  { get_places_in(city) }
     end
 
@@ -17,6 +16,21 @@ class BeermappingApi
         places.map do | place |
           Place.new(place)
         end
+    end
+
+    def self.place_with_id(id)
+        Rails.cache.fetch(id, expires_in: 1.week) { get_place_with_id(id) }
+    end
+
+    def self.get_place_with_id(id)
+        url = "http://beermapping.com/webservice/locquery/#{key}/"
+        response = HTTParty.get "#{url}#{id}"
+
+        places = response.parsed_response["bmp_locations"]["location"]
+        return [] if places.is_a?(Hash) and places['id'].nil?    
+        places = [places] if places.is_a?(Hash)
+        Place.new(places.first)
+
     end
 
     def self.key
