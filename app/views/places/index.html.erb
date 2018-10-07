@@ -8,6 +8,14 @@
     <%= submit_tag "Search" %>
 <% end %>
 
+<% if @weather_information %>
+    <h2>The current beer weather in <%= @weather_information["city"] %>: </h2>
+    <p><%= @weather_information["temperature"] %> Celsius</p>
+    <%= image_tag(@weather_information["icon_url"]) %>
+    <p><strong>wind</strong> <%= @weather_information["wind_speed"] %> m/sec, direction <%= @weather_information["wind_direction"] %> </p>
+
+<% end %>
+
 <% if @places %>
 <table>
     <thead>

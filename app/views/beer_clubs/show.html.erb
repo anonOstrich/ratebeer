@@ -23,7 +23,7 @@
 
 <% if current_user %>
 
-<% if not current_user.is_member_of_club(@beer_club) %>
+<% if not current_user.member_of_club?(@beer_club) %>
 <h4>Join the club:</h4>
   <%= form_for(@membership) do |f| %>
     <%= f.hidden_field :beer_club_id %>
