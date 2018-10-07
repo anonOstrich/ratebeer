@@ -2,10 +2,24 @@ require 'rails_helper'
 
 describe "Places" do
 
+    before :each do 
+        stub_request(:get, "http://api.apixu.com/v1/current.json?key=97f71ae642024312b08135335180710&q=kumpula").
+        with(
+          headers: {
+            'Accept'=>'*/*',
+            'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'User-Agent'=>'Ruby'
+          }).
+        to_return(status: 200, body: "", headers: {})
+
+        allow(WeatherApi).to receive(:weather_in).with("kumpula").and_return(nil)
+    end
+
     it "if one is returned by the API, it is shown on the page" do
         allow(BeermappingApi).to receive(:places_in).with("kumpula").and_return(
             [ Place.new( name:"Oljenkorsi", id:1)  ]
         )
+
 
         visit places_path
         fill_in('city', with:'kumpula')
