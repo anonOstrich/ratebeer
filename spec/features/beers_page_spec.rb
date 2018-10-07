@@ -5,14 +5,14 @@ include Helpers
 describe "Beer" do 
     let!(:brewery) { FactoryBot.create :brewery, name: 'oma panimo' }
     let! (:user) { FactoryBot.create :user}
-
+    let! (:style) { FactoryBot.create :style }
     
 
     it "can be added with valid name" do 
         sign_in username:'Pekka', password: 'Foobar1'
         visit new_beer_path
         select('oma panimo', from: 'beer[brewery_id]')
-        select('IPA', from: 'beer[style]')
+        select('Lager', from: 'beer[style_id]')
         fill_in('beer[name]', with: 'Test beer')
 
         expect{
@@ -27,7 +27,7 @@ describe "Beer" do
         sign_in username: 'Pekka', password: 'Foobar1'
         visit new_beer_path
         select('oma panimo', from: 'beer[brewery_id]')
-        select('IPA', from: 'beer[style]')
+        select('Lager', from: 'beer[style_id]')
         fill_in('beer[name]', with: '')
         
 

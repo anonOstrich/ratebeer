@@ -37,4 +37,9 @@ module Helpers
         end
     end
 
+
+def create_style_with_name(style_name)
+  Style.create name: style_name, description: "Test description"
+end
+
 end

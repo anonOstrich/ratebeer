@@ -42,8 +42,8 @@ describe "User" do
         user = User.first
         brewery1 = FactoryBot.create(:brewery, name: "Jaska's Brewery")
         brewery2 = FactoryBot.create(:brewery, name: 'Basic Brewery')
-        create_beer_with_rating({user: user, style: 'IPA', brewery: brewery1} , 35)
-        create_beer_with_rating({user: user, style: 'Pale Ale', brewery: brewery2}, 39)
+        create_beer_with_rating({user: user, style: create_style_with_name('IPA'), brewery: brewery1} , 35)
+        create_beer_with_rating({user: user, style: create_style_with_name('Pale Ale'), brewery: brewery2}, 39)
         visit user_path(user)
         expect(page).to have_content 'Favorite brewery: Basic Brewery'
         expect(page).to have_content 'Favorite beer style: Pale Ale'
