@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @style.name %></h1>
+
+<p>
+  <%= @style.description %>
+</p>
+
+<% if @style.beers %>
+<h2>Beers</h2>
+<ul>
+  <% @style.beers.each do |beer| %>
+  <li><%= link_to "#{beer.name}" , beer_path(beer) %> by <%= link_to "#{beer.brewery.name}", brewery_path(beer.brewery) %></li>
+  <% end %>
+</ul>
+<% else %>
+<p>No beers that match the style!</p>
+<% end %>
+
+<%= link_to 'Edit', edit_style_path(@style) %> |
+<%= link_to 'Back', styles_path %>

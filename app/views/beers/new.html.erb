@@ -4,9 +4,9 @@
 
 <%= form_for(@beer) do |f| %>
 
-    brewery: <%= f.select :brewery_id, options_from_collection_for_select(@breweries, :id, :to_s, selected: @beer.brewery.id) %>
+    brewery: <%= f.select :brewery_id, options_from_collection_for_select(@breweries, :id, :to_s) %>
 
-    style: <%= f.select :style, options_for_select( @styles.map  {|style| [style, style]}, selected: @beer.style)%>
+    style: <%= f.select :style_id, options_from_collection_for_select(@styles, :id, :name)%>
 
     name: <%= f.text_field :name %>
     
