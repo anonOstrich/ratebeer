@@ -1,10 +1,10 @@
-<p id="notice"><%= notice %></p>
+
 
 <h1>Breweries</h1>
 
 <p> Number of breweries: <%= @breweries.count %></p>
 <h2>Listing breweries:</h2>
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Name</th>
@@ -16,10 +16,10 @@
   <tbody>
     <% @breweries.each do |brewery| %>
       <tr>
-        <td><%= link_to "#{brewery.name}", brewery%></td>
+        <td><%= link_to "#{brewery.name}", brewery %></td>
         <td><%= brewery.year %></td>
-        <td><%= link_to('Edit', edit_brewery_path(brewery)) if current_user %></td>
-        <td><%= link_to('Destroy', brewery, {method: :delete, data: { confirm: 'Are you sure?' }}) if current_user %></td>
+        <td><%= link_to('Edit', edit_brewery_path(brewery), class: "btn btn-primary") if current_user %></td>
+        <td><%= link_to('Destroy', brewery, {method: :delete, data: { confirm: 'Are you sure?' }}, class: "btn btn-destroy") if current_user %></td>
       </tr>
     <% end %>
   </tbody>
@@ -27,5 +27,5 @@
 
 <br>
 
-<%= link_to('New Brewery', new_brewery_path) if current_user %>
-<%= link_to 'All Beers', beers_path %>
+<%= link_to('New Brewery', new_brewery_path, class: "btn btn-primary") if current_user %>
+<%= link_to 'All Beers', beers_path, class: "btn btn-primary" %>

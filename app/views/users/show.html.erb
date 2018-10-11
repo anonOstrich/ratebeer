@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 <h1><%= @user.username %></h1>
 <p>
@@ -10,7 +10,7 @@ Has made <%=  pluralize(@user.ratings.count, 'rating') %>, average  rating <%= @
   <% @user.ratings.each do |rating| %>
     <li><%= rating.beer.name %> <%= rating.score %>
     <% if @user == current_user %>
-     <%= link_to 'delete', rating_path(rating.id), method: :delete %>
+     <%= link_to 'delete', rating_path(rating.id), method: :delete, class: "btn btn-danger"   %>
     <% end %>
       </li>
     <% end %>
@@ -35,7 +35,7 @@ No ratings yet
 </ul>
 
 <% if @user == current_user %>
-  <%= link_to 'Edit', edit_user_path(@user) %> | 
-  <%= link_to 'Destroy account', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary"   %> | 
+  <%= link_to 'Destroy account', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"   %>
 <% end %>
-<%= link_to 'Back', users_path %>
+<%= link_to 'Back', users_path, class: "btn btn-primary"   %>

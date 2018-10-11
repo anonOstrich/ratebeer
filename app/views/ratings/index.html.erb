@@ -1,12 +1,12 @@
 <h2>List of ratings</h2>
 <ul>
     <% @ratings.each do |rating| %>
-    <li><%= rating %> <%= link_to "#{rating.user.username}", rating.user %> </li>
+    <li><%= rating %> <%= link_to "#{rating.user.username}", rating.user  %> </li>
     <% end %>
 </ul>
 
 <h3>Total number of reviews: <%= "#{@ratings.count}" %> </h3>
 
 <% if not current_user.nil? %>
-<%= link_to 'Add a new rating', new_rating_path %>
+<%= link_to 'Add a new rating', new_rating_path, class: "btn btn-primary"   %>
 <% end %>

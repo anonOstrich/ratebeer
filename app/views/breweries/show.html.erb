@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 <p>
   <strong>Name:</strong>
@@ -16,7 +16,7 @@
 
 <p>
   <% @brewery.beers.each do |beer| %>
-    <%= link_to "#{beer.name}", beer_path(beer)  %>
+    <%= link_to "#{beer.name}", beer_path(beer), class: "btn btn-primary"  %>
   <% end %>
 <p>
 
@@ -25,5 +25,5 @@
   Has  <%= pluralize(@brewery.ratings.count, 'rating')%>, average <%= @brewery.average_rating %>
 </p>
 <% end %>
-<%= link_to('Edit', edit_brewery_path(@brewery)) if current_user %> |
-<%= link_to 'Back', breweries_path %>
+<%= link_to('Edit', edit_brewery_path(@brewery), class: "btn btn-primary") if current_user %> |
+<%= link_to 'Back', breweries_path, class: "btn btn-primary" %>
