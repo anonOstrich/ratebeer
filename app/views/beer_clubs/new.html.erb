@@ -1,5 +1,32 @@
 <h1>New Beer Club</h1>
 
-<%= render 'form', beer_club: @beer_club %>
+
+
+<%= form_for @beer_club do |f| %>
+<div class="form-group row">
+    <label for="name" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
+        <%= f.text_field :name, class:"form-control" %>
+    </div>
+</div>
+<div class="form-group row">
+    <label for="founded" class="col-sm-2 col-form-label">Founded</label>
+    <div class="col-sm-10">
+        <%= f.number_field :founded, class: "form-control" %>
+    </div>
+</div>
+<div class="form-group row">
+    <label for="city" class="col-sm-2 col-form-label">City</label>
+    <div class="col-sm-10">
+        <%= f.text_field :city, class: "form-control" %>
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-sm-10">
+        <%= f.submit "Create beer club", class: "btn btn-primary" %>
+    </div>
+</div>
+<% end %>
+
 
 <%= link_to 'Back', beer_clubs_path, class: "btn btn-primary" %>
