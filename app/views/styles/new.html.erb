@@ -1,5 +1,29 @@
 <h1>New Style</h1>
 
-<%= render 'form', style: @style %>
+<%= form_for(@style) do |f| %>
+
+<div class="form-group row">
+    <label for="name" class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
+        <%= f.text_field :name, class:"form-control" %>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="description" class="col-sm-2 col-form-label">Description</label>
+    <div class="col-sm-10">
+        <%= f.text_area :description, class:"form-control" %>
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="offset-sm-2 col-sm-10">
+        <%= f.submit "Create style", class:"btn btn-primary" %>
+    </div>
+</div>
+
+
+<% end %>
+
 
 <%= link_to 'Back', styles_path, class: "btn btn-primary"   %>
