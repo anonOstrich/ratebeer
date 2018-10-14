@@ -17,6 +17,13 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def toggle_activity
+    u = User.find params[:id]
+    u.update_attribute(:closed, !u.closed)
+    new_status = u.closed ? "closed" : "opened"
+    redirect_to u, notice: "user status has been changed to #{new_status}"
+  end
+
   # GET /users/1/edit
   def edit
   end
@@ -28,6 +35,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        @user.update_attribute(:admin, false)
+        @user.update_attribute(:closed, false)
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else

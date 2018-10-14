@@ -10,7 +10,7 @@
     <% things.each do |thing| %>
       <tr>
         <td><%= link_to "#{thing.name}", thing %></td>
-        <td><%= thing.average_rating %></td>
+        <td><%= round thing.average_rating %></td>
       </tr>
     <% end %>
   </tbody>

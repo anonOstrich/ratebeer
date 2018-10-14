@@ -10,5 +10,5 @@
   <%= @membership.user_id %>
 </p>
 
-<%= link_to 'Edit', edit_membership_path(@membership), class: "btn btn-primary"   %> |
+<%= edit_and_destroy_buttons @membership %> |
 <%= link_to 'Back', memberships_path, class: "btn btn-primary"   %>

@@ -1,9 +1,20 @@
 
 
-<h1><%= @user.username %></h1>
+<h1><%= @user.username %><% if @user.closed%>
+<span class="badge badge-info">account closed</span>
+<% end %></h1>
 <p>
+<% if current_user && current_user.admin %>
+
+  <% if @user.closed %>
+    <%= link_to 'open account', toggle_activity_user_path(@user.id), method: :post , class: "btn btn-primary btn-sm" %>
+  <% else %>
+    <%= link_to 'close account', toggle_activity_user_path(@user.id), method: :post, class: "btn btn-danger btn-sm"  %>
+  <% end %>
+
+<% end %> 
 <% if @user.ratings %>
-Has made <%=  pluralize(@user.ratings.count, 'rating') %>, average  rating <%= @user.average_rating %> 
+Has made <%=  pluralize(@user.ratings.count, 'rating') %>, average  rating <%= round @user.average_rating %> 
 
 <h2>Ratings</h2>
 <ul class="list-group list-group-flush">
@@ -34,8 +45,5 @@ No ratings yet
 
 </ul>
 
-<% if @user == current_user %>
-  <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-primary"   %> | 
-  <%= link_to 'Destroy account', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"   %>
-<% end %>
+<%= edit_and_destroy_buttons @user %>
 <%= link_to 'Back', users_path, class: "btn btn-primary"   %>

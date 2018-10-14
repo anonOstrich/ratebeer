@@ -18,5 +18,6 @@
 <p>No beers that match the style!</p>
 <% end %>
 
-<%= link_to 'Edit', edit_style_path(@style), class: "btn btn-primary"   %> |
+<%= edit_and_destroy_buttons(@style) %>
+|
 <%= link_to 'Back', styles_path, class: "btn btn-primary"   %>

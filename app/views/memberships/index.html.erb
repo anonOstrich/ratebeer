@@ -7,7 +7,7 @@
     <tr>
       <th>Beer club</th>
       <th>User</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -16,9 +16,7 @@
       <tr>
         <td><%= membership.beer_club_id %></td>
         <td><%= membership.user_id %></td>
-        <td><%= link_to 'Show', membership, class: "btn btn-primary"   %></td>
-        <td><%= link_to 'Edit', edit_membership_path(membership), class: "btn btn-primary"   %></td>
-        <td><%= link_to 'Destroy', membership, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"   %></td>
+        <td><%= link_to 'Show', membership, class: "btn btn-primary btn-sm" %></td>
       </tr>
     <% end %>
   </tbody>

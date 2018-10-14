@@ -1,10 +1,14 @@
-Rails.application.routes.draw do
+ Rails.application.routes.draw do
   resources :styles
   resources :memberships
   resources :beer_clubs
-  resources :users
+  resources :users do 
+    post 'toggle_activity', on: :member
+  end
   resources :beers
-  resources :breweries
+  resources :breweries do 
+    post 'toggle_activity', on: :member
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'breweries#index'
   get 'kaikki_bisset',  to: 'breweries#index'

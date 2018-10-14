@@ -21,7 +21,7 @@
 </p>
 <% else %>
 <p>
-  Has  <%= pluralize(@beer.ratings.count, 'review')%>, average <%= @beer.average %>
+  Has  <%= pluralize(@beer.ratings.count, 'review')%>, average <%= round @beer.average %>
 </p>
 <% end %>
 
@@ -32,7 +32,7 @@
     score: <%= f.number_field :score %> 
     <%= f.submit class: "btn btn-primary" %>
   <% end %>
-
-  <%= link_to 'Edit', edit_beer_path(@beer), class: "btn btn-primary" %> |
 <% end %>
+
+<%= edit_and_destroy_buttons @beer %>
 <%= link_to 'Back', beers_path, class: "btn btn-primary" %>
