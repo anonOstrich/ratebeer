@@ -1,6 +1,6 @@
 class WeatherApi
   def self.weather_in(city)
-    return nil if city.empty? 
+    return nil if city.empty?
 
     city = city.downcase
     Rails.cache.fetch("#{city}_weather", expires_in: 1.day) { get_weather_in(city) }

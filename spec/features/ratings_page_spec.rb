@@ -28,8 +28,8 @@ describe "Rating" do
     expect(beer1.average_rating).to eq(15.0)
   end
 
-  it "are displayed on the ratings page correctly with total number of ratings" do
-    scores = [10, 30, 47, 17, 18, 22]
+  it "are displayed on the ratings page correctly " do
+    scores = [10, 30, 47, 17, 18]
     create_beers_with_many_ratings({user: user}, *scores)
     visit ratings_path
 
@@ -37,7 +37,6 @@ describe "Rating" do
       expect(page).to have_content(s)
     end
 
-    expect(page).to have_content('Total number of reviews: 6')
   end
 
   it 'are displayed on users page correctly' do 
