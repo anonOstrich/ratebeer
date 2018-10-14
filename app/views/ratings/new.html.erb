@@ -13,9 +13,25 @@
 
         </div>
     <% end %>
+    <div class="form-group row">
+        <label for="beer[id]" class="col-sm-2 col-form-label">Beer</label>
+        <div class="col-sm-10">
+            <%=  f.select :beer_id, options_from_collection_for_select(@beers, :id, :to_s, selected: @rating.beer_id), class:"form-control" %>
+        </div>
+    </div>
 
-    <%= f.select :beer_id, options_from_collection_for_select(@beers, :id, :to_s, selected: @rating.beer_id) %>
-    score : <%= f.number_field :score %> 
+    <div class="form-group row">
+        <label for="score" class="col-sm-2 col-form-label">Score</label>
+        <div class="col-sm-10">
+            <%= f.number_field :score, class: "form-control" %>
+        </div>
+    </div>
 
-    <%= f.submit %> 
+
+    <div class="form-group row">
+        <div class="offset-sm-2 col-sm-10">
+            <%= f.submit "Create Rating", class:"btn btn-primary" %>
+        </div>
+    </div>
+
 <% end %>

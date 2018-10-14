@@ -4,9 +4,21 @@
 
 
 <%= form_tag places_path do %>
-    city <%= text_field_tag :city, params[:city] %>
-    <%= submit_tag "Search" %>
+    <div class="form-row my-sm-2">
+
+        <label for="city" class="col-sm-2 col-form-label">City</label>
+        <div class="col-sm-8">
+            <%= text_field_tag :city, params[:city], class:"form-control" %>
+        </div>
+
+
+        <div class="col-sm-2">
+            <%= submit_tag "Search", class:"btn btn-primary" %>
+        </div>
+    </div>
+
 <% end %>
+
 
 <% if @weather_information %>
     <h2>The current beer weather in <%= @weather_information["city"] %>: </h2>

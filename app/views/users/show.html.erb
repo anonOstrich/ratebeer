@@ -6,11 +6,11 @@
 Has made <%=  pluralize(@user.ratings.count, 'rating') %>, average  rating <%= @user.average_rating %> 
 
 <h2>Ratings</h2>
-<ul>
+<ul class="list-group list-group-flush">
   <% @user.ratings.each do |rating| %>
-    <li><%= rating.beer.name %> <%= rating.score %>
+    <li class="list-group-item"><%= rating.beer.name %> <%= rating.score %>
     <% if @user == current_user %>
-     <%= link_to 'delete', rating_path(rating.id), method: :delete, class: "btn btn-danger"   %>
+     <%= link_to 'delete', rating_path(rating.id), method: :delete, class: "btn btn-danger btn-sm"   %>
     <% end %>
       </li>
     <% end %>
@@ -27,9 +27,9 @@ No ratings yet
 
 
 <h2>Proud member of the following beer clubs:</h2>
-<ul>
+<ul class="list-group list-group-flush">
   <% @user.beer_clubs.each do |club| %>
-  <li><%= club.name %></li>
+  <li class="list-group-item"><%= club.name %></li>
   <% end %>
 
 </ul>
