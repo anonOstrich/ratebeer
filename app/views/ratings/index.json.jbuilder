@@ -1,3 +1,3 @@
 json.array!(@ratings) do |rating|
-    json.extract! rating, :id, :score
+  json.extract! rating, :id, :score
 end

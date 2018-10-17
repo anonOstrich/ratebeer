@@ -10,11 +10,10 @@ class BeerClubsController < ApplicationController
     order = params[:order] || "name"
 
     @beer_clubs = case order
-      when "name" then @beer_clubs.sort_by{ |bc| bc.name }
-      when "founded" then @beer_clubs.sort_by{ |bc| bc.founded }
-      when "city" then @beer_clubs.sort_by{ |bc| bc.city }
+                  when "name" then @beer_clubs.sort_by(&:name)
+                  when "founded" then @beer_clubs.sort_by(&:founded)
+                  when "city" then @beer_clubs.sort_by(&:city)
     end
-
   end
 
   # GET /beer_clubs/1
