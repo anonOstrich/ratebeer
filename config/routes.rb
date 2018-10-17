@@ -12,6 +12,7 @@
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'breweries#index'
   get 'kaikki_bisset',  to: 'breweries#index'
+  get 'beerlist', to: 'beers#list'
   get 'signup', to: 'users#new'
   get 'signin', to: 'sessions#new'
   post 'places', to: 'places#search'

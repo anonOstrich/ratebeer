@@ -1,13 +1,21 @@
 class BeersController < ApplicationController
   before_action :set_beer, only: [:show, :edit, :update, :destroy]
   before_action :set_breweries_and_styles_for_template, only: [:new, :create, :edit]
-  before_action :ensure_that_signed_in, only: [:new, :edit, :create, :update, :destroy]
+  before_action :ensure_that_signed_in, except: [:index, :list, :show]
   before_action :ensure_that_admin, only: [:destroy]
 
   # GET /beers
   # GET /beers.json
   def index
     @beers = Beer.all
+    order = params[:order] || "name"
+
+    @beers = case order
+      when 'name' then @beers.sort_by{|b| b.name}
+      when 'style' then @beers.sort_by{|b| b.style.name}
+      when 'brewery' then @beers.sort_by{ |b| b.brewery.name }
+    end
+
   end
 
   # GET /beers/1
@@ -24,6 +32,9 @@ class BeersController < ApplicationController
 
   # GET /beers/1/edit
   def edit
+  end
+
+  def list
   end
 
   # POST /beers
