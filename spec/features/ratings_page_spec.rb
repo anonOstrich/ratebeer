@@ -49,7 +49,7 @@ describe "Rating" do
     scores.each do |score|
       expect(page).to have_content("anonymous #{score} ")
     end
-    expect(page).to have_content('Has made 5 ratings, average rating 30.0')
+    expect(page).to have_content('Has made 5 ratings, average rating 30')
 
     scores2.each do |score|
       expect(page).not_to have_content("anonymous #{score} ")

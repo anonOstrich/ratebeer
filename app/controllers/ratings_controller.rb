@@ -13,7 +13,7 @@ class RatingsController < ApplicationController
     @rating.user = current_user
 
     if current_user.nil?
-      redirect signin_path, notice: 'you should be signed in'
+      redirect_to signin_path, notice: 'you should be signed in'
     elsif @rating.save
       current_user.ratings << @rating
       session[:last_rating] = "#{@rating.beer.name} #{@rating.score} points"
