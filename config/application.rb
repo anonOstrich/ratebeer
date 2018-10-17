@@ -20,5 +20,6 @@ module Ratebeer
     # the framework and any gems in your application.
     config.autoload_paths << Rails.root.join("lib")
     config.eager_load_paths << Rails.root.join("lib")
+    config.assets.js_compressor = Uglifier.new(harmony: true)
   end
 end
