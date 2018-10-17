@@ -8,7 +8,7 @@
 /.bundle
 
 #caused problems with travis
-/coverage
+/coverage/*
 /vendor/bundle
 
 # Ignore the default SQLite database.
