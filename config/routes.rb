@@ -13,6 +13,7 @@
   root 'breweries#index'
   get 'kaikki_bisset',  to: 'breweries#index'
   get 'beerlist', to: 'beers#list'
+  get 'brewerylist', to: 'breweries#list'
   get 'signup', to: 'users#new'
   get 'signin', to: 'sessions#new'
   post 'places', to: 'places#search'
