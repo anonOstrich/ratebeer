@@ -5,12 +5,12 @@ dist: trusty
 addons:
   chrome: stable
 before_install:
-  - # start your web application and listen on `localhost`
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+- # start your web application and listen on `localhost`
+- google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 before_script:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
+- "export DISPLAY=:99.0"
+- "sh -e /etc/init.d/xvfb start"
+- sleep 3 # give xvfb some time to start
 script:
 - xvfb-run make test
 - xvfb-run --server-args="-screen 0 1024x768x24" make test
@@ -25,8 +25,3 @@ deploy:
     repo: anonOstrich/ratebeer
   run: "rake db:migrate"
 
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
-  - rackup  # start a Web server
-  - sleep 3 # give Web server some time to bind to sockets, etc
