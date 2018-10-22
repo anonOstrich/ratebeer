@@ -15,16 +15,28 @@
   <%= @beer_club.city %>
 </p>
 
+<h2>Members</h2>
 <ul>
-  <% @beer_club.users.each do |user|%>
+  <% @active_members.each do |user|%>
   <li><%= user.username %></li>
   <% end %>
-<ul>
+</ul>
 
+<% if current_user && Membership.find_by(user_id: current_user.id, beer_club_id: @beer_club.id).confirmed? %>
+<h2>Outstanding applications</h2>
+<ul>
+  <% @pending_members.each do |user|%>
+  <li><%= user.username %>, 
+  <%= link_to "Confirm as member", toggle_activity_membership_path(Membership.find_by(user_id: user.id, beer_club_id: @beer_club.id)),
+   method: :post, class: "btn btn-primary btn-sm" %></li>
+  <% end %>
+</ul>
+<% end %>
 <% if current_user %>
 
+
 <% if not current_user.member_of_club?(@beer_club) %>
-<h4>Join the club:</h4>
+<h4>Apply for membership:</h4>
   <%= form_for(@membership) do |f| %>
     <%= f.hidden_field :beer_club_id %>
     <%= f.submit class:"btn btn-primary" %>

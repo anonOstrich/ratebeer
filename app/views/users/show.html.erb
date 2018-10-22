@@ -37,12 +37,19 @@ No ratings yet
 
 
 
-<h2>Proud member of the following beer clubs:</h2>
+<h2>Beer clubs</h2>
+<h4>member of</h4>
 <ul class="list-group list-group-flush">
-  <% @user.beer_clubs.each do |club| %>
+  <% @user.memberships.select{|x| x.confirmed?}.map{|x| x.beer_club}.each do |club| %>
   <li class="list-group-item"><%= club.name %></li>
   <% end %>
-
+</ul>
+<br/>
+<h4>applied membership of</h4>
+<ul class="list-group list-group-flush">
+  <% @user.memberships.select{|x| not x.confirmed?}.map{|x| x.beer_club }.each do |club| %>
+  <li class="list-group-item"><%= club.name %></li>
+  <% end %>
 </ul>
 
 <%= edit_and_destroy_buttons @user %>

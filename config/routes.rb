@@ -9,6 +9,10 @@
   resources :breweries do 
     post 'toggle_activity', on: :member
   end
+
+  resources :memberships do 
+    post 'toggle_activity', on: :member
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'breweries#index'
   get 'kaikki_bisset',  to: 'breweries#index'

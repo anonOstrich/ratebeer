@@ -19,9 +19,14 @@ class BeerClubsController < ApplicationController
   # GET /beer_clubs/1
   # GET /beer_clubs/1.json
   def show
-    @membership = Membership.new
-    @membership.beer_club = @beer_club
-    @membership = @beer_club.memberships.find_by user_id: current_user.id if current_user&.member_of_club?(@beer_club)
+    @membership = if @beer_club.users.include? current_user
+                    @beer_club.memberships.where(user: current_user).first
+                  else
+                    Membership.new beer_club: @beer_club
+    end
+
+    @active_members = @beer_club.memberships.select(&:confirmed?).map(&:user)
+    @pending_members = @beer_club.memberships.select(&:confirmed?).map(&:user)
     render :show
   end
 
@@ -41,6 +46,8 @@ class BeerClubsController < ApplicationController
 
     respond_to do |format|
       if @beer_club.save
+        ms = Membership.create beer_club_id: @beer_club.id, user_id: current_user.id, confirmed: true
+        ms.save
         format.html { redirect_to @beer_club, notice: 'Beer club was successfully created.' }
         format.json { render :show, status: :created, location: @beer_club }
       else

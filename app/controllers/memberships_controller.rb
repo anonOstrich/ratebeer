@@ -22,6 +22,13 @@ class MembershipsController < ApplicationController
   def edit
   end
 
+  def toggle_activity
+    membership = Membership.find params[:id]
+    membership.confirmed = true
+    membership.save
+    redirect_to BeerClub.find(membership.beer_club_id), notice: "Membership has been granted!"
+  end
+
   # POST /memberships
   # POST /memberships.json
   def create
@@ -29,6 +36,7 @@ class MembershipsController < ApplicationController
     existing_memberships = Membership.all.select{ |m| m.beer_club_id == params[:membership][:beer_club_id].to_i && m.user_id == current_user.id }
     if existing_memberships.empty?
       @membership.user_id = current_user.id if current_user
+      @membership.confirmed = false
     end
 
     respond_to do |format|

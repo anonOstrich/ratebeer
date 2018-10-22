@@ -537,15 +537,6 @@
         1,
         null
       ],
-      "/home/jesper/Documents/ratebeer/app/models/beer_club.rb": [
-        1,
-        1,
-        1,
-        1,
-        0,
-        null,
-        null
-      ],
       "/home/jesper/Documents/ratebeer/app/controllers/breweries_controller.rb": [
         1,
         1,
@@ -808,6 +799,15 @@
         0,
         0
       ],
+      "/home/jesper/Documents/ratebeer/app/models/beer_club.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
       "/home/jesper/Documents/ratebeer/app/mailers/application_mailer.rb": [
         0,
         0,
@@ -854,6 +854,11 @@
         0,
         0,
         null,
+        0,
+        0,
+        0,
+        0,
+        null,
         null,
         0,
         0,
@@ -868,6 +873,8 @@
         0,
         0,
         null,
+        0,
+        0,
         0,
         0,
         0,
@@ -941,8 +948,16 @@
         0,
         0,
         null,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
         null,
         null,
+        null,
+        0,
         0,
         0,
         0,
@@ -1011,6 +1026,6 @@
         0
       ]
     },
-    "timestamp": 1540237464
+    "timestamp": 1540241405
   }
 }
