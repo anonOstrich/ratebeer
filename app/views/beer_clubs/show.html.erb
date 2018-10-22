@@ -22,7 +22,8 @@
   <% end %>
 </ul>
 
-<% if current_user && Membership.find_by(user_id: current_user.id, beer_club_id: @beer_club.id).confirmed? %>
+<% if current_user &&  Membership.find_by(user_id: current_user.id, beer_club_id: @beer_club.id) &&
+ Membership.find_by(user_id: current_user.id, beer_club_id: @beer_club.id).confirmed? %>
 <h2>Outstanding applications</h2>
 <ul>
   <% @pending_members.each do |user|%>
