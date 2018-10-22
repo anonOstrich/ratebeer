@@ -35,7 +35,7 @@ class User < ApplicationRecord
     beer_clubs.find_by id: b_club.id
   end
 
-  def self.top_number_of_ratings(n)
+  def self.top(n)
     sorted_nums_of_ratings_in_desc_order = User.all.sort_by{ |u| -u.ratings.count }
     sorted_nums_of_ratings_in_desc_order.first(n)
   end

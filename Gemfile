@@ -5,15 +5,22 @@ ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
+
+gem 'sucker_punch', '~> 2.0'
 # Use sqlite3 as the database for Active Record if not on Heroku. Otherwise PostgreSQL
 group :development, :test do
   gem 'sqlite3'
+  gem 'rack-mini-profiler'
+  gem 'omniauth-github', '~> 1.3.0'
 end
 
 group :production do
    gem 'pg'
    gem 'rails_12factor'
 end
+
+
+
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets

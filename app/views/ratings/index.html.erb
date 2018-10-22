@@ -3,17 +3,17 @@
 <div class="row">
     <div class="col-sm-3 mx-sm-1">
         <h2>Best beers</h2>
-        <%= render 'shared/rating_table', things: Beer.top(3) %>
+        <%= render 'shared/rating_table', things: @beers %>
     </div>
 
     <div class="col-sm-4 mx-sm-1">
         <h2>Best breweries</h2>
-        <%= render 'shared/rating_table', things: Brewery.top(3) %>
+        <%= render 'shared/rating_table', things: @breweries %>
     </div>
 
     <div class="col-sm-3 mx-sm-1">
         <h2>Best styles</h2>
-        <%= render 'shared/rating_table', things: Style.top(3) %>
+        <%= render 'shared/rating_table', things: @styles %>
     </div>
 
 </div>
@@ -28,7 +28,7 @@
         </tr>
     </thead>
     <tbody>
-        <% User.top_number_of_ratings(3).each do |u| %>
+        <% @users.each do |u| %>
         <tr>
             <td><%= link_to "#{u.username}", u %></td>
             <td><%= u.ratings.count %></td>
@@ -41,7 +41,7 @@
 <h2>recent ratings</h2>
 <div class="row">
     <ul>
-        <% Rating.recent.each do |r| %>
+        <% @ratings.each do |r| %>
         <li><%= r %> by <%= link_to "#{r.user.username}", r.user %> at <%= r.updated_at %></li>
         <% end %>
     </ul>

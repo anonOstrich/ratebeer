@@ -1,5 +1,6 @@
 
 
+<% cache @brewery do  %>
 <p>
   <strong>Name:</strong>
   <%= @brewery.name %>
@@ -14,7 +15,7 @@
 </p>
 
 <p>
-  Oluita:
+  Number of beers:
   <%= @brewery.beers.count %>
 </p>
 
@@ -28,6 +29,8 @@
 <p>
   Has  <%= pluralize(@brewery.ratings.count, 'rating')%>, average <%= round @brewery.average_rating %>
 </p>
+<% end %>
+
 <% end %>
 
 
