@@ -26,7 +26,7 @@ class BeerClubsController < ApplicationController
     end
 
     @active_members = @beer_club.memberships.select(&:confirmed?).map(&:user)
-    @pending_members = @beer_club.memberships.select(&:confirmed?).map(&:user)
+    @pending_members = @beer_club.memberships.select{|x| (not x.confirmed?)}.map(&:user)
     render :show
   end
 
