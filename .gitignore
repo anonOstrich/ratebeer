@@ -8,6 +8,8 @@
 /.bundle
 
 #caused problems with travis
+coverage
+coverage/
 coverage/.last_run.json
 coverage/.resultset.json
 coverage/index.html
@@ -15,6 +17,8 @@ coverage/index.html
 /coverage/.resultset.json
 /coverage/index.html
 /vendor/bundle
+
+
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
